@@ -72,4 +72,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # Exclude contents of the Assets/Plugins folder
-/[Aa]ssets/Plugins/*
+/[Aa]ssets/Plugins/
