@@ -73,3 +73,7 @@ crashlytics-build.properties
 
 # Exclude contents of the Assets/Plugins folder
 /[Aa]ssets/Plugins/
+/[Aa]ssets/Plugins.meta
+
+/[Aa]ssets/Resources/
+/[Aa]ssets/Resources.meta
