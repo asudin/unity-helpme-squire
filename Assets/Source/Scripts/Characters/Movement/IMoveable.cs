@@ -6,6 +6,5 @@ namespace NSCharacters.Movement
     {
         Transform Transform { get; }
         Rigidbody Rigidbody { get; }
-        float Speed { get; }
     }
 }
