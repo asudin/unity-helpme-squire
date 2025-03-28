@@ -7,5 +7,7 @@ namespace NSHandlers
         void Move();
 
         void Stop();
+
+        void Update(float time);
     }
 }
