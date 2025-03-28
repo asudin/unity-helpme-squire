@@ -7,11 +7,13 @@ namespace NSCharacters.Movement
         private bool _isMoving;
         private IMoveable _moveable;
         private DynamicJoystick _joystick;
+        private float _speed;
 
-        public PlayerMovePattern(IMoveable moveable, DynamicJoystick joystick)
+        public PlayerMovePattern(IMoveable moveable, PlayerMovementProperties properties)
         {
             _moveable = moveable;
-            _joystick = joystick;
+            _joystick = properties.Joystick;
+            _speed = properties.Speed;
         }
 
         public void StartMove() =>
@@ -26,9 +28,9 @@ namespace NSCharacters.Movement
                 return;
 
             _moveable.Rigidbody.velocity = new Vector3(
-                _joystick.Horizontal * _moveable.Speed,
+                _joystick.Horizontal * _speed,
                 _moveable.Rigidbody.velocity.y,
-                _joystick.Vertical * _moveable.Speed); 
+                _joystick.Vertical * _speed); 
         }
     }
 }
