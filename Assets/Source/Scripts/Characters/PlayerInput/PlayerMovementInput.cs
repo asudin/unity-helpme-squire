@@ -1,17 +1,19 @@
-using NSCharacters;
 using NSHandlers;
 using UnityEngine;
 
-[RequireComponent(typeof(Player))]
-public class PlayerMovementInput : PlayerMovementInputBase
+namespace NSCharacters.PlayerInput
 {
-    protected override IPlayerMovementHandler CreateMovementHandler()
+    [RequireComponent(typeof(Player))]
+    public class PlayerMovementInput : PlayerMovementInputBase
     {
-        return new PlayerMovementHandler(GetComponent<Player>(), _properties);
-    }
+        protected override IPlayerMovementHandler CreateMovementHandler()
+        {
+            return new PlayerMovementHandler(GetComponent<Player>(), _properties);
+        }
 
-    protected override bool IsPlayerScreenTouching()
-    {
-        return (Input.touchCount > 0 || Input.GetMouseButton(0));
+        protected override bool IsPlayerScreenTouching()
+        {
+            return (Input.touchCount > 0 || Input.GetMouseButton(0));
+        }
     }
 }

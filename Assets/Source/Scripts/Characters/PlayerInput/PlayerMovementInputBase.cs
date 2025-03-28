@@ -2,41 +2,44 @@ using NSCharacters.Movement;
 using NSHandlers;
 using UnityEngine;
 
-public abstract class PlayerMovementInputBase : MonoBehaviour
+namespace NSCharacters.PlayerInput
 {
-    [SerializeField] protected PlayerMovementProperties _properties;
-
-    private IPlayerMovementHandler _playerMovementHandler;
-    private ArenaState _currentState;
-
-    protected void Awake()
+    public abstract class PlayerMovementInputBase : MonoBehaviour
     {
-        _playerMovementHandler = CreateMovementHandler();
-    }
+        [SerializeField] protected PlayerMovementProperties _properties;
 
-    private void FixedUpdate()
-    {
-        if (_currentState == ArenaState.Paused)
-            return;
+        private IPlayerMovementHandler _playerMovementHandler;
+        private ArenaState _currentState;
 
-        var isScreenTouched = IsPlayerScreenTouching();
-        
-        if (isScreenTouched)
+        protected void Awake()
         {
-            _playerMovementHandler.Move();
-        }
-        else
-        {
-            _playerMovementHandler.Stop();
+            _playerMovementHandler = CreateMovementHandler();
         }
 
-        _playerMovementHandler.Update(Time.deltaTime);
+        private void FixedUpdate()
+        {
+            if (_currentState == ArenaState.Paused)
+                return;
+
+            var isScreenTouched = IsPlayerScreenTouching();
+    
+            if (isScreenTouched)
+            {
+                _playerMovementHandler.Move();
+            }
+            else
+            {
+                _playerMovementHandler.Stop();
+            }
+
+            _playerMovementHandler.Update(Time.deltaTime);
+        }
+
+        protected abstract IPlayerMovementHandler CreateMovementHandler();
+
+        protected abstract bool IsPlayerScreenTouching();
+
+        public void UpdateGameState(ArenaState state) =>
+            _currentState = state;
     }
-
-    protected abstract IPlayerMovementHandler CreateMovementHandler();
-
-    protected abstract bool IsPlayerScreenTouching();
-
-    public void UpdateGameState(ArenaState state) =>
-        _currentState = state;
 }

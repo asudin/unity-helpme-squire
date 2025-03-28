@@ -1,47 +1,49 @@
 using NSCharacters;
 using NSCharacters.Movement;
-using NSHandlers;
 
-public class PlayerMovementHandler : IPlayerMovementHandler
+namespace NSHandlers
 {
-    private readonly PlayerMovementProperties _properties;
-    private Player _player;
-    private bool _isPlayerMoving = false;
-    private IMover _currentMover;
-
-    public PlayerMovementHandler(Player player, PlayerMovementProperties properties)
+    public class PlayerMovementHandler : IPlayerMovementHandler
     {
-        _player = player;
-        _properties = properties;
-    }
+        private readonly PlayerMovementProperties _properties;
+        private Player _player;
+        private bool _isPlayerMoving = false;
+        private IMover _currentMover;
 
-    private void SetMover(IMover mover)
-    {
-        _currentMover?.StopMove();
-        _currentMover = mover;
-        _currentMover.StartMove();
-    }
+        public PlayerMovementHandler(Player player, PlayerMovementProperties properties)
+        {
+            _player = player;
+            _properties = properties;
+        }
 
-    public void Move()
-    {
-        if (_isPlayerMoving)
-            return;
+        private void SetMover(IMover mover)
+        {
+            _currentMover?.StopMove();
+            _currentMover = mover;
+            _currentMover.StartMove();
+        }
 
-        SetMover(new PlayerMovePattern(_player, _properties));
-        _isPlayerMoving = true;
-    }
+        public void Move()
+        {
+            if (_isPlayerMoving)
+                return;
 
-    public void Stop()
-    {
-        if (_isPlayerMoving == false)
-            return;
+            SetMover(new PlayerMovePattern(_player, _properties));
+            _isPlayerMoving = true;
+        }
 
-        SetMover(new NoMovePattern());
-        _isPlayerMoving = false;
-    }
+        public void Stop()
+        {
+            if (_isPlayerMoving == false)
+                return;
 
-    public void Update(float time)
-    {
-        _currentMover?.Update(time);
+            SetMover(new NoMovePattern());
+            _isPlayerMoving = false;
+        }
+
+        public void Update(float time)
+        {
+            _currentMover?.Update(time);
+        }
     }
 }

@@ -1,4 +1,5 @@
 using NSCharacters;
+using NSCharacters.PlayerInput;
 using UnityEngine;
 
 namespace NSArena
@@ -11,7 +12,7 @@ namespace NSArena
 
         private void Awake()
         {
-            _playerMovementInput = GetComponent<PlayerMovementInput>();
+            _playerMovementInput = _player.GetComponent<PlayerMovementInput>();
             _playerMovementInput.UpdateGameState(ArenaState.Paused);
         }
     }
