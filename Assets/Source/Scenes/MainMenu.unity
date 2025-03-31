@@ -1244,21 +1244,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 2083981436}
   _firesFactoryData:
-    FirePrefab: {fileID: 4688509624310169376, guid: 527de4158820a06408ceb182fa1c2a19, type: 3}
+    Prefab: {fileID: 4688509624310169376, guid: 527de4158820a06408ceb182fa1c2a19, type: 3}
+    PooledAmount: 10
+    Container: {fileID: 1950284041}
     SpawnPoints:
     - {fileID: 1237788571}
     - {fileID: 820254474}
     - {fileID: 1647270503}
-    Container: {fileID: 1950284041}
-    InstantlySpawnedAmount: 2
-    PooledAmount: 10
   _potionFactoryData:
-    PotionPrefab: {fileID: 1741018877017293470, guid: 1863c509f85dee341be933c63d6b134d, type: 3}
+    Prefab: {fileID: 1741018877017293470, guid: 1863c509f85dee341be933c63d6b134d, type: 3}
+    PooledAmount: 20
+    Container: {fileID: 814508981}
     SpawnPoints:
     - {fileID: 203165865}
     - {fileID: 593911201}
-    Container: {fileID: 814508981}
-    PooledAmount: 20
 --- !u!1 &1237788570
 GameObject:
   m_ObjectHideFlags: 0
