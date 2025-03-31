@@ -12,28 +12,25 @@ namespace NSFactories
         public readonly Transform Container;
         public List<T> Pool => _pool;
 
-        public ObjectPool(List<T> prefabs, Transform container, uint amount = 10)
+        public ObjectPool(T prefab, Transform container, uint amount = 10)
         {
             Container = container;
             _amount = amount;
 
-            Initialize(prefabs);
+            Initialize(prefab);
         }
 
-        private void Initialize(List<T> prefabs)
+        private void Initialize(T prefab)
         {
-            if (prefabs == null)
+            if (prefab == null)
                 return;
 
-            foreach (var prefab in prefabs)
+            for (int i = 0; i < _amount; i++)
             {
-                for (int i = 0; i < _amount; i++)
-                {
-                    var instance = GameObject.Instantiate(prefab, Container);
+                var instance = GameObject.Instantiate(prefab, Container);
 
-                    instance.gameObject.SetActive(false);
-                    _pool.Add(instance);
-                }
+                instance.gameObject.SetActive(false);
+                _pool.Add(instance);
             }
         }
 

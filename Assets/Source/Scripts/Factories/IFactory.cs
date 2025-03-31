@@ -8,6 +8,6 @@ namespace NSFactories
 
         void DeactivateItem(T item);
 
-        void SetPosition(T item, Vector3 position);
+        void SetItemPosition(T item, Vector3 position);
     }
 }

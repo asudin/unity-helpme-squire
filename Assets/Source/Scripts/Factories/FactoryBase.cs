@@ -14,7 +14,7 @@ namespace NSFactories
             item.gameObject.SetActive(false);
         }
 
-        public void SetPosition(T item, Vector3 position)
+        public void SetItemPosition(T item, Vector3 position)
         {
             item.transform.position = position;
         }
