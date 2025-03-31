@@ -9,11 +9,6 @@ namespace NSFactories
             item.gameObject.SetActive(true);
         }
 
-        public virtual void DeactivateItem(T item)
-        {
-            item.gameObject.SetActive(false);
-        }
-
         public void SetItemPosition(T item, Vector3 position)
         {
             item.transform.position = position;
