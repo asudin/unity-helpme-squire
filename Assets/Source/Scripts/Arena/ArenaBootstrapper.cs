@@ -11,36 +11,28 @@ namespace NSArena
     public class ArenaBootstrapper : MonoBehaviour
     {
         [SerializeField] private Player _player;
-        [SerializeField] private InteractableObjectFactoryData _firesFactoryData;
-        [SerializeField] private InteractableObjectFactoryData _potionFactoryData;
+        [SerializeField] private InteractableFactoryData _firesFactoryData;
+        [SerializeField] private InteractableFactoryData _potionFactoryData;
 
         private PlayerMovementInput _playerMovementInput;
-        private InteractableObjectFactory<Fire> _firesFactory;
-        private InteractableObjectFactory<Potion> _potionFactory;
+        private InteractableFactory<Fire> _firesFactory;
+        private InteractableFactory<Potion> _potionFactory;
 
         private void Awake()
         {
             _playerMovementInput = _player.GetComponent<PlayerMovementInput>();
-            _playerMovementInput.UpdateGameState(ArenaState.Paused);
-            _firesFactory = new InteractableObjectFactory<Fire>(_firesFactoryData);
-            _potionFactory = new InteractableObjectFactory<Potion>(_potionFactoryData);
+            _playerMovementInput.GetGameState(ArenaState.Paused);
+            _firesFactory = new InteractableFactory<Fire>(_firesFactoryData);
+            _potionFactory = new InteractableFactory<Potion>(_potionFactoryData);
         }
 
         private void Start()
         {
-            SpawnInteractables(_firesFactoryData, _firesFactory);
-            SpawnInteractables(_potionFactoryData, _potionFactory);
+            SpawnInteractables(_firesFactory);
+            SpawnInteractables(_potionFactory);
         }
 
-        private void SpawnInteractables<T>(InteractableObjectFactoryData config, IFactory<T> factory) where T : MonoBehaviour, IInteractable
-        {
-            foreach (var point in config.SpawnPoints)
-            {
-                if (factory.Pool.TryGetPooledObject(out var interactable))
-                {
-                    factory.ActivateItem(interactable, point.position, point.rotation);
-                }
-            }
-        }
+        private void SpawnInteractables<T>(IFactory<T> factory) where T : MonoBehaviour, IInteractable =>
+             factory.ActivateItems();
     }
 }

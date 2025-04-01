@@ -14,26 +14,22 @@ namespace NSFactories
             _pool = pool ?? throw new ArgumentNullException(nameof(pool));
         }
 
+        public abstract void ActivateItems();
+
         public virtual void ActivateItem(T item)
         {
             item.gameObject.SetActive(true);
         }
 
-        public virtual void ActivateItem(T item, Vector3 position, Quaternion rotation)
+        public virtual void ActivateItem(T item, Vector3 position)
         {
             item.gameObject.SetActive(true);
             item.transform.position = position;
-            item.transform.rotation = rotation;
         }
 
         public virtual void DeactivateItem(T item)
         {
             item.gameObject.SetActive(false);
-        }
-
-        public void SetItemPosition(T item, Vector3 position)
-        {
-            item.transform.position = position;
         }
     }
 }

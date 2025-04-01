@@ -6,12 +6,12 @@ namespace NSFactories
     {
         public ObjectPool<T> Pool { get; }
 
-        void ActivateItem(T item);
+        void ActivateItems();
         
-        void ActivateItem(T item, Vector3 position, Quaternion rotation);
+        void ActivateItem(T item);
+
+        void ActivateItem(T item, Vector3 position);
 
         void DeactivateItem(T item);
-
-        void SetItemPosition(T item, Vector3 position);
     }
 }
