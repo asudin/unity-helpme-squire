@@ -39,7 +39,7 @@ namespace NSCharacters.PlayerInput
 
         protected abstract bool IsPlayerScreenTouching();
 
-        public void UpdateGameState(ArenaState state) =>
+        public void GetGameState(ArenaState state) =>
             _currentState = state;
     }
 }
